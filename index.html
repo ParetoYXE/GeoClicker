@@ -1,0 +1,35 @@
+<html>
+
+    <head> 
+    
+    
+    </head>
+    
+    <body> 
+        <h1>Map</h1>
+        <p id="map"></p>
+    
+    </body>
+
+</html>
+
+
+
+
+<script>
+    var x = document.getElementById("map");
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    
+    function showPosition(position) {
+        x.innerHTML = "Latitude: " + position.coords.latitude + 
+        "<br>Longitude: " + position.coords.longitude; 
+    }
+    
+    getLocation();
+</script>
