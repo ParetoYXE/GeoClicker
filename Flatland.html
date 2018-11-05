@@ -1,0 +1,54 @@
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
+    
+        <div class="container" align="center" >
+            <h1>Flatland</h1>
+            <canvas id="canvas" width="256" height="256" style="border:1px solid #000000;">
+
+            </canvas>
+        </div>
+    </body>
+
+
+</html>
+
+
+
+
+
+<script>
+
+    function gameStart(){
+        console.log("Game started");
+        var context = document.getElementById('canvas').getContext("2d");
+        var img = new Image();
+        img.onload = function(){
+            for(var i =0; i < 256;i+=16){
+                for(var j = 0; j<256;j+=16){
+                     context.drawImage(img,i,j)
+                }
+            }
+        }
+        img.src="Tree.png"
+    }
+    
+    
+    gameStart();
+
+
+
+
+</script>
+
+<style>
+
+</style>
