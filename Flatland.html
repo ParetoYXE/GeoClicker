@@ -1,5 +1,5 @@
 <html>
-    
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,14 +7,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    
+
     <body>
-    
+
         <div class="container" align="center" >
             <h1>Flatland</h1>
-            <canvas id="canvas" width="256" height="256" style="border:1px solid #000000;">
-
+            <canvas id="canvas" width="512" height="512" style="border:1px solid #000000;">
             </canvas>
+            <h1 id="mapHash">Map Hash: </h1>
         </div>
     </body>
 
@@ -26,22 +26,36 @@
 
 
 <script>
+  var x = document.getElementById("mapHash");
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+
+  }
+
+  function showPosition(position) {
+      console.log(position);
+      x.innerHTML = "Map Hash: " + position.coords.latitude + position.coords.longitude;
+  }
 
     function gameStart(){
         console.log("Game started");
         var context = document.getElementById('canvas').getContext("2d");
         var img = new Image();
         img.onload = function(){
-            for(var i =0; i < 256;i+=16){
-                for(var j = 0; j<256;j+=16){
-                     context.drawImage(img,i,j)
+            for(var i =0; i < 512; i+=32){
+                for(var j = 0; j<512;j+=32){
+                     context.drawImage(img,i,j,32,32)
                 }
             }
         }
         img.src="Tree.png"
     }
-    
-    
+
+    getLocation();
     gameStart();
 
 
